@@ -40,3 +40,6 @@ gem 'spring',        group: :development
 
 # Heroku
 gem 'rails_12factor', group: :production
+
+# Sinatra
+gem 'sinatra'
