@@ -1,3 +1,2 @@
-# This file is used by Rack-based servers to start the application.
-
-require './'
+require 'app/v1.0/metrics_tracker.rb'
+run Sinatra::Application
