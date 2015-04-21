@@ -29,6 +29,8 @@ get '/v1.0/stats' do
 
 	puts response.inspect
 
+	response.inspect
+
 	# batch_req = [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json
 
 	# route = "https://graph.facebook.com/?access_token=#{CONFIG['fb_access_token']}&batch=#{URI.encode(batch_req)}"
