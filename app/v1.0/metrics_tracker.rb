@@ -1,5 +1,5 @@
 require 'sinatra'
-#require 'httparty'
+require 'httparty'
 
 # Initialize Configuration
 CONFIG = YAML.load_file('./config/setup.yml')
@@ -13,38 +13,26 @@ get '/v1.0/stats' do
 	url = params[:url]
 	puts url
 
-	uri = URI("https://graph.facebook.com/v2.3")
-	req = Net::HTTP::Post.new(uri.path)
-	attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json}
-	req.set_form_data(attach.merge('access_token' => CONFIG['fb_access_token']))
+	# uri = URI("https://graph.facebook.com/v2.3")
+	# req = Net::HTTP::Post.new(uri.path)
+	# attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json}
+	# req.set_form_data(attach.merge('access_token' => CONFIG['fb_access_token']))
 
-	res = Net::HTTP.new(uri.host, uri.port)
-	res.verify_mode = OpenSSL::SSL::VERIFY_NONE
-	res.use_ssl = true
+	# res = Net::HTTP.new(uri.host, uri.port)
+	# res.verify_mode = OpenSSL::SSL::VERIFY_NONE
+	# res.use_ssl = true
 
-	response = nil
-	res.start do |http|
-		response = http.request(req)
-		puts response.inspect
-	end
+	# response = nil
+	# res.start do |http|
+	# 	response = http.request(req)
+	# 	puts response.inspect
+	# end
 
-	# batch_req = [
-	# 	{
-	# 		method: "GET",
-	# 		name: "get-url-stats",
-	# 		relative_url: "v2.3/?id=#{url}",
-	# 		omit_response_on_success: false
-	# 	},
-	# 	{
-	# 		method: "GET",
-	# 		name: "likes",
-	# 		relative_url: "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"
-	# 	}
-	# ]
+	batch_req = [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json
 
-	# route = "https://graph.facebook.com/?access_token=#{CONFIG['fb_access_token']}&batch=#{URI.encode(batch_req.to_json)}"
-	# response = HTTParty.post(route)
+	route = "https://graph.facebook.com/?access_token=#{CONFIG['fb_access_token']}&batch=#{URI.encode(batch_req)}"
+	response = HTTParty.post(route)
 
-	# puts response.inspect
+	puts response.inspect
 
 end
