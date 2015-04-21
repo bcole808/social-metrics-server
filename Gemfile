@@ -43,3 +43,6 @@ gem 'rails_12factor', group: :production
 
 # Sinatra
 gem 'sinatra'
+
+# Http Requests
+gem 'httparty'
