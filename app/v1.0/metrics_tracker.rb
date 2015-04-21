@@ -7,4 +7,6 @@ CONFIG = YAML.load_file('./config/setup.yml')
 
 get '/v1.0/stats' do
 
+	puts params.inspect
+
 end
