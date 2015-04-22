@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'httparty'
+require 'net/https'
 
 # Initialize Configuration
 CONFIG = YAML.load_file('./config/setup.yml')
@@ -32,8 +33,10 @@ get '/v1.0/stats' do
 		response = http.request(req)
 	end
 
-	#puts response.read_body
-	return JSON.parse(response.body)
+	output = ""
+	output << "#{response.body} <br />"
+	return output
+	
 
 	# batch_req = [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json
 
