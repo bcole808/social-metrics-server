@@ -15,7 +15,9 @@ get '/v1.0/stats' do
 
 	uri = URI("https://graph.facebook.com/v2.0")
 	req = Net::HTTP::Post.new(uri.path)
-	attach = {"fields" => "share,og_object{id,url,engagement}"}
+
+	attach = {"fields" => {"share", "og_object{id,url,engagement}"}
+
 	#attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.0/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.0/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json}
 	req.set_form_data(attach.merge('access_token' => CONFIG['fb_access_token']))
 
@@ -25,7 +27,7 @@ get '/v1.0/stats' do
 	# req = Net::HTTP::Get.new uri.request_uri
 
 	puts req
-	
+
 	res = Net::HTTP.new(uri.host, uri.port)
 	res.verify_mode = OpenSSL::SSL::VERIFY_NONE
 	res.use_ssl = true
