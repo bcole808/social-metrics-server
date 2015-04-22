@@ -14,12 +14,12 @@ get '/v1.0/stats' do
 	url = params[:url]
 	puts url
 
-	#uri = 'https://graph.facebook.com/v2.3/?id=' + URI.encode(url) + '&fields=share,og_object{id,url,engagement}&access_token=' + CONFIG['fb_access_token']
-	#eq = Net::HTTP::get('http://www.google')
+	uri = URI("https://graph.facebook.com/v2.3/#{url}")
+	req = Net::HTTP::Post.new(uri.path)
 
-	#attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=share,og_object.engagement"}].to_json}
+	attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=share,og_object.engagement"}].to_json}
 	#attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.0/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.0/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json}
-	#req.set_form_data(attach.merge('access_token' => CONFIG['fb_access_token']))
+	req.set_form_data(attach.merge('access_token' => CONFIG['fb_access_token']))
 
 	# attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json}
 	# uri = URI("https://graph.facebook.com/v2.3")
@@ -28,25 +28,25 @@ get '/v1.0/stats' do
 
 	# puts req
 
-	# res = Net::HTTP.new(uri.host, uri.port)
-	# res.verify_mode = OpenSSL::SSL::VERIFY_NONE
-	# res.use_ssl = true
+	res = Net::HTTP.new(uri.host, uri.port)
+	res.verify_mode = OpenSSL::SSL::VERIFY_NONE
+	res.use_ssl = true
 
-	# response = nil
-	# res.start do |http|
-	# 	response = http.request(req)
-	# end
+	response = nil
+	res.start do |http|
+		response = http.request(req)
+	end
 
-	# output = ""
-	# output << "#{response.body} <br />"
-	# return output
+	output = ""
+	output << "#{response.body} <br />"
+	return output
 	
 
 	# batch_req = [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json
 
-	route = 'https://graph.facebook.com/v2.3/?id=' + URI.encode(url) + '&fields=share,og_object{id,url,engagement}&access_token=' + CONFIG['fb_access_token']
-	response = HTTParty.get(route)
+	# route = 'https://graph.facebook.com/v2.3/?id=' + URI.encode(url) + '&fields=share,og_object{id,url,engagement}&access_token=' + CONFIG['fb_access_token']
+	# response = HTTParty.get(route)
 
-	puts response.inspect
+	# puts response.inspect
 
 end
