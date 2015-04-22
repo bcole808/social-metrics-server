@@ -15,7 +15,7 @@ get '/v1.0/stats' do
 	puts url
 
 	#uri = 'https://graph.facebook.com/v2.3/?id=' + URI.encode(url) + '&fields=share,og_object{id,url,engagement}&access_token=' + CONFIG['fb_access_token']
-	req = Net::HTTP::post('http://www.google.com')
+	#eq = Net::HTTP::get('http://www.google')
 
 	#attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=share,og_object.engagement"}].to_json}
 	#attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.0/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.0/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json}
@@ -26,27 +26,27 @@ get '/v1.0/stats' do
 	# uri.query = URI.encode_www_form(attach.merge('access_token' => CONFIG['fb_access_token']))
 	# req = Net::HTTP::Get.new uri.request_uri
 
-	puts req
+	# puts req
 
-	res = Net::HTTP.new(uri.host, uri.port)
-	res.verify_mode = OpenSSL::SSL::VERIFY_NONE
-	res.use_ssl = true
+	# res = Net::HTTP.new(uri.host, uri.port)
+	# res.verify_mode = OpenSSL::SSL::VERIFY_NONE
+	# res.use_ssl = true
 
-	response = nil
-	res.start do |http|
-		response = http.request(req)
-	end
+	# response = nil
+	# res.start do |http|
+	# 	response = http.request(req)
+	# end
 
-	output = ""
-	output << "#{response.body} <br />"
-	return output
+	# output = ""
+	# output << "#{response.body} <br />"
+	# return output
 	
 
 	# batch_req = [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json
 
-	# route = "https://graph.facebook.com/?access_token=#{CONFIG['fb_access_token']}&batch=#{URI.encode(batch_req)}"
-	# response = HTTParty.post(route)
+	route = 'https://graph.facebook.com/v2.3/?id=' + URI.encode(url) + '&fields=share,og_object{id,url,engagement}&access_token=' + CONFIG['fb_access_token']
+	response = HTTParty.post(route)
 
-	# puts response.inspect
+	puts response.inspect
 
 end
