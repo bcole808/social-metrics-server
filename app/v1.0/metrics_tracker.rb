@@ -13,15 +13,15 @@ get '/v1.0/stats' do
 	url = params[:url]
 	puts url
 
-	# uri = URI("https://graph.facebook.com/v2.3")
-	# req = Net::HTTP::Post.new(uri.path)
-	# attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json}
-	# req.set_form_data(attach.merge('access_token' => CONFIG['fb_access_token']))
-
-	attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json}
 	uri = URI("https://graph.facebook.com/v2.3")
-	uri.query = URI.encode_www_form(attach.merge('access_token' => CONFIG['fb_access_token']))
-	req = Net::HTTP::Get.new uri.request_uri
+	req = Net::HTTP::Post.new(uri.path)
+	attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json}
+	req.set_form_data(attach.merge('access_token' => CONFIG['fb_access_token']))
+
+	# attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json}
+	# uri = URI("https://graph.facebook.com/v2.3")
+	# uri.query = URI.encode_www_form(attach.merge('access_token' => CONFIG['fb_access_token']))
+	# req = Net::HTTP::Get.new uri.request_uri
 
 	res = Net::HTTP.new(uri.host, uri.port)
 	res.verify_mode = OpenSSL::SSL::VERIFY_NONE
