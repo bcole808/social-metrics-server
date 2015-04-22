@@ -23,8 +23,9 @@ get '/v1.0/stats' do
 	res.use_ssl = true
 
 	response = nil
-	res.start do |http|
-		response = http.request(req)
+	response = res.start do |http|
+		post_data = URI.encode_www_form({xml: xml})
+		http.request(req, post_data)
 	end
 
 	return JSON.parse(response.read_body)
