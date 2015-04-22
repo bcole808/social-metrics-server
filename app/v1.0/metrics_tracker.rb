@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'httparty'
+require 'net/http'
 
 # Initialize Configuration
 CONFIG = YAML.load_file('./config/setup.yml')
@@ -14,7 +15,7 @@ get '/v1.0/stats' do
 	puts url
 
 	uri = 'https://graph.facebook.com/v2.3/?id=' + URI.encode(url) + '&fields=share,og_object{id,url,engagement}&access_token=' + CONFIG['fb_access_token']
-	req = Net::HTTP::Get.new(uri)
+	req = Net::HTTP::get(uri)
 
 	#attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=share,og_object.engagement"}].to_json}
 	#attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.0/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.0/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json}
