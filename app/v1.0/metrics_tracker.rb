@@ -33,8 +33,7 @@ get '/v1.0/stats' do
 	end
 
 	#puts response.read_body
-	puts response
-	return JSON.parse(response)
+	return JSON.parse(response.body)
 
 	# batch_req = [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "likes","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=likes.summary(true).limit(0)"}].to_json
 
