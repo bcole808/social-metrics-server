@@ -13,7 +13,13 @@ get '/v1.0/stats' do
 	url = params[:url]
 	puts url
 
-	uri = URI('https://graph.facebook.com/v2.3/?id=' + url + '&fields=share,og_object{id,url,engagement}&access_token=' + CONFIG['fb_access_token'])
+	uri = URI('https://graph.facebook.com/v2.3/')
+	uri.query = Rack::Utils.build_query(
+		id: url,
+		fields: 'share, og_object{id,url,engagement}',
+		access_token: CONFIG['fb_access_token']
+	)
+	
 	req = Net::HTTP::Post.new(uri.path)
 
 	#attach = {'batch' => [{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/?id=#{url}","omit_response_on_success" => false},{"method" => "GET","name" => "get-url-stats","relative_url" => "v2.3/{result=get-url-stats:$.og_object.id}?fields=share,og_object.engagement"}].to_json}
