@@ -9,7 +9,6 @@ CONFIG = YAML.load_file('./config/setup.yml')
 get '/v1.0/stats' do
 
 	url = params[:url]
-	puts url
 
 	uri = URI.parse('https://graph.facebook.com/v2.3/')
 	uri.query = Rack::Utils.build_query(
@@ -19,10 +18,6 @@ get '/v1.0/stats' do
 	)
 
 	req = Net::HTTP::Get.new(uri.to_s)
-
-	#req.set_form_data('fields' => 'og_object[engagement]','access_token' => CONFIG['fb_access_token'])
-
-	puts req.inspect
 
 	res = Net::HTTP.new(uri.host, uri.port)
 	res.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -36,5 +31,9 @@ get '/v1.0/stats' do
 	output = ""
 	output << "#{response.body}"
 	return output
+
+end
+
+get '/v1.0/login' do
 
 end
