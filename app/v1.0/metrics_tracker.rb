@@ -33,8 +33,9 @@ get '/v1.0/stats' do
 		response = http.request(req)
 	end
 
-	output = ""
-	output << "#{response.body} <br />"
-	return output
+	return response
+	# output = ""
+	# output << "#{response.body}"
+	# return output
 
 end
