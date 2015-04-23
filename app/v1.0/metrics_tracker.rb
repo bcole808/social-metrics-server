@@ -16,7 +16,7 @@ get '/v1.0/stats' do
 	uri = URI('https://graph.facebook.com/v2.3/')
 	uri.query = Rack::Utils.build_query(
 		id: url,
-		fields: 'share, og_object{id,url,engagement}',
+		fields: 'share, og_object{engagement}',
 		access_token: CONFIG['fb_access_token']
 	)
 
