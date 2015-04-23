@@ -18,7 +18,7 @@ get '/v1.0/stats' do
 		access_token: CONFIG['fb_access_token']
 	)
 
-	req = Net::HTTP::Get.new(uri.path)
+	req = Net::HTTP::Get.new(uri.request)
 
 	#req.set_form_data('fields' => 'og_object[engagement]','access_token' => CONFIG['fb_access_token'])
 
