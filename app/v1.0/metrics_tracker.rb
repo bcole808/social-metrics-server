@@ -27,14 +27,14 @@ get '/v1.0/stats' do
 
 	puts req
 
-	# res = Net::HTTP.new(uri.host, uri.port)
-	# res.verify_mode = OpenSSL::SSL::VERIFY_NONE
-	# res.use_ssl = true
+	res = Net::HTTP.new(uri.host, uri.port)
+	res.verify_mode = OpenSSL::SSL::VERIFY_NONE
+	res.use_ssl = true
 
-	# response = nil
-	# res.start do |http|
-	# 	response = http.request(req)
-	# end
+	response = nil
+	res.start do |http|
+		response = http.request(req)
+	end
 
 	response = http.request(req)
 
