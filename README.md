@@ -1,3 +1,9 @@
+# How to run locally
+
+1. bundle
+2. rake db:create db:migrate
+3. foreman start
+
 == README
 
 This README would normally document whatever steps are necessary to get the
