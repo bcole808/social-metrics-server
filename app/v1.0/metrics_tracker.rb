@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'httparty'
 
 # Initialize Configuration
 CONFIG = YAML.load_file('./config/setup.yml')
