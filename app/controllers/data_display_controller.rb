@@ -1,0 +1,2 @@
+class DataDisplayController < ApplicationController
+end
