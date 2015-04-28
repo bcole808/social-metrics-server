@@ -4,7 +4,7 @@ require 'net/http'
 require 'uri'
 
 # Initialize Configuration
-CONFIG = YAML.load_file('./config/setup.yml')
+#CONFIG = YAML.load_file('./config/setup.yml')
 
 # Main Request Callback
 

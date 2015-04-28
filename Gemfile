@@ -44,5 +44,8 @@ gem 'rails_12factor', group: :production
 # Sinatra
 gem 'sinatra'
 
-# Facebook Auth
-gem 'omniauth-facebook'
+# Redis service
+gem 'redis'
+
+# Process managment
+gem 'foreman'
