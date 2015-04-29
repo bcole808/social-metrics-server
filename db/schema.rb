@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423170718) do
+ActiveRecord::Schema.define(version: 20150428174023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
+
+  create_table "social_stats", force: true do |t|
+    t.string   "site_id"
+    t.boolean  "is_multisite"
+    t.string   "wp_version"
+    t.string   "plugin_version"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.hstore   "plugin_settings"
+    t.hstore   "conn_status"
+  end
 
   create_table "users", force: true do |t|
     t.string   "provider"
