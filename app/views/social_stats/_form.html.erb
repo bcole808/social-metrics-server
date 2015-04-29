@@ -1,0 +1,41 @@
+<%= form_for(@social_stat) do |f| %>
+  <% if @social_stat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@social_stat.errors.count, "error") %> prohibited this social_stat from being saved:</h2>
+
+      <ul>
+      <% @social_stat.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :site_id %><br>
+    <%= f.text_field :site_id %>
+  </div>
+  <div class="field">
+    <%= f.label :is_multisite %><br>
+    <%= f.check_box :is_multisite %>
+  </div>
+  <div class="field">
+    <%= f.label :wp_version %><br>
+    <%= f.text_field :wp_version %>
+  </div>
+  <div class="field">
+    <%= f.label :plugin_version %><br>
+    <%= f.text_field :plugin_version %>
+  </div>
+  <div class="field">
+    <%= f.label :plugin_settings %><br>
+    <%= f.text_field :plugin_settings %>
+  </div>
+  <div class="field">
+    <%= f.label :conn_status %><br>
+    <%= f.text_field :conn_status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

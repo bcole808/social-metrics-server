@@ -1,0 +1,35 @@
+<h1>Listing social_stats</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Site</th>
+      <th>Is multisite</th>
+      <th>Wp version</th>
+      <th>Plugin version</th>
+      <th>Plugin settings</th>
+      <th>Conn status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @social_stats.each do |social_stat| %>
+      <tr>
+        <td><%= social_stat.site_id %></td>
+        <td><%= social_stat.is_multisite %></td>
+        <td><%= social_stat.wp_version %></td>
+        <td><%= social_stat.plugin_version %></td>
+        <td><%= social_stat.plugin_settings %></td>
+        <td><%= social_stat.conn_status %></td>
+        <td><%= link_to 'Show', social_stat %></td>
+        <td><%= link_to 'Edit', edit_social_stat_path(social_stat) %></td>
+        <td><%= link_to 'Destroy', social_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Social stat', new_social_stat_path %>

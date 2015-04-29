@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  site_id: MyString
+  is_multisite: false
+  wp_version: MyString
+  plugin_version: MyString
+  plugin_settings: 
+  conn_status: 
+
+two:
+  site_id: MyString
+  is_multisite: false
+  wp_version: MyString
+  plugin_version: MyString
+  plugin_settings: 
+  conn_status: 

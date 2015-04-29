@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @social_stat.site_id %>
+</p>
+
+<p>
+  <strong>Is multisite:</strong>
+  <%= @social_stat.is_multisite %>
+</p>
+
+<p>
+  <strong>Wp version:</strong>
+  <%= @social_stat.wp_version %>
+</p>
+
+<p>
+  <strong>Plugin version:</strong>
+  <%= @social_stat.plugin_version %>
+</p>
+
+<p>
+  <strong>Plugin settings:</strong>
+  <%= @social_stat.plugin_settings %>
+</p>
+
+<p>
+  <strong>Conn status:</strong>
+  <%= @social_stat.conn_status %>
+</p>
+
+<%= link_to 'Edit', edit_social_stat_path(@social_stat) %> |
+<%= link_to 'Back', social_stats_path %>
