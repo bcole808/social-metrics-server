@@ -4,7 +4,6 @@ class CallbackController < ApplicationController
 	# POST /callback/stats
 	def stats
 		if SocialStat.where(site_id: social_stat_params["site_id"]).blank?
-			puts social_stat_params.inspect
 			@social_stat = SocialStat.new(social_stat_params)
 			@social_stat.save
 			render nothing: true
@@ -18,10 +17,9 @@ class CallbackController < ApplicationController
 private
 
 	def social_stat_params
-		puts params.inspect
-     	params.permit(:site_id, :is_multisite, :wp_version, :plugin_version).tap do |whitelisted|
+     	params.permit(:site_id, :is_multisite, :wordpress_version, :plugin_version).tap do |whitelisted|
        		whitelisted[:plugin_settings] = params[:plugin_settings]
-       		whitelisted[:conn_status] = params[:conn_status]
+       		whitelisted[:api_connection_status] = params[:api_connection_status]
      	end
     end
 end

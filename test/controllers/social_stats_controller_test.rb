@@ -18,7 +18,7 @@ class SocialStatsControllerTest < ActionController::TestCase
 
   test "should create social_stat" do
     assert_difference('SocialStat.count') do
-      post :create, social_stat: { conn_status: @social_stat.conn_status, is_multisite: @social_stat.is_multisite, plugin_settings: @social_stat.plugin_settings, plugin_version: @social_stat.plugin_version, site_id: @social_stat.site_id, wp_version: @social_stat.wp_version }
+      post :create, social_stat: { api_connection_status: @social_stat.api_connection_status, is_multisite: @social_stat.is_multisite, plugin_settings: @social_stat.plugin_settings, plugin_version: @social_stat.plugin_version, site_id: @social_stat.site_id, wordpress_version: @social_stat.wordpress_version }
     end
 
     assert_redirected_to social_stat_path(assigns(:social_stat))
@@ -35,7 +35,7 @@ class SocialStatsControllerTest < ActionController::TestCase
   end
 
   test "should update social_stat" do
-    patch :update, id: @social_stat, social_stat: { conn_status: @social_stat.conn_status, is_multisite: @social_stat.is_multisite, plugin_settings: @social_stat.plugin_settings, plugin_version: @social_stat.plugin_version, site_id: @social_stat.site_id, wp_version: @social_stat.wp_version }
+    patch :update, id: @social_stat, social_stat: { api_connection_status: @social_stat.api_connection_status, is_multisite: @social_stat.is_multisite, plugin_settings: @social_stat.plugin_settings, plugin_version: @social_stat.plugin_version, site_id: @social_stat.site_id, wordpress_version: @social_stat.wordpress_version }
     assert_redirected_to social_stat_path(assigns(:social_stat))
   end
 

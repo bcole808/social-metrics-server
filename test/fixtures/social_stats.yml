@@ -3,15 +3,15 @@
 one:
   site_id: MyString
   is_multisite: false
-  wp_version: MyString
+  wordpress_version: MyString
   plugin_version: MyString
   plugin_settings: 
-  conn_status: 
+  api_connection_status: 
 
 two:
   site_id: MyString
   is_multisite: false
-  wp_version: MyString
+  wordpress_version: MyString
   plugin_version: MyString
   plugin_settings: 
-  conn_status: 
+  api_connection_status: 

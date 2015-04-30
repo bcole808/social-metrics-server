@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 20150428174023) do
   create_table "social_stats", force: true do |t|
     t.string   "site_id"
     t.boolean  "is_multisite"
-    t.string   "wp_version"
+    t.string   "wordpress_version"
     t.string   "plugin_version"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.hstore   "plugin_settings"
-    t.hstore   "conn_status"
+    t.hstore   "api_connection_status"
   end
 
 end

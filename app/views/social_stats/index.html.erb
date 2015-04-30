@@ -18,10 +18,10 @@
       <tr>
         <td><%= social_stat.site_id %></td>
         <td><%= social_stat.is_multisite %></td>
-        <td><%= social_stat.wp_version %></td>
+        <td><%= social_stat.wordpress_version %></td>
         <td><%= social_stat.plugin_version %></td>
         <td><%= social_stat.plugin_settings %></td>
-        <td><%= social_stat.conn_status %></td>
+        <td><%= social_stat.api_connection_status %></td>
         <td><%= link_to 'Show', social_stat %></td>
         <td><%= link_to 'Edit', edit_social_stat_path(social_stat) %></td>
         <td><%= link_to 'Destroy', social_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td>

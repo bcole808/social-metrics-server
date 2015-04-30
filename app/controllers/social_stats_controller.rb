@@ -70,9 +70,9 @@ class SocialStatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def social_stat_params
-      params.permit(:site_id, :is_multisite, :wp_version, :plugin_version).tap do |whitelisted|
+      params.permit(:site_id, :is_multisite, :wordpressp_version, :plugin_version).tap do |whitelisted|
         whitelisted[:plugin_settings] = params[:plugin_settings]
-        whitelisted[:conn_status] = params[:conn_status]
+        whitelisted[:api_connection_status] = params[:api_connection_status]
       end
     end
 end
