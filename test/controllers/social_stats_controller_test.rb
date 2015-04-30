@@ -3,6 +3,7 @@ require 'test_helper'
 class SocialStatsControllerTest < ActionController::TestCase
   setup do
     @social_stat = social_stats(:one)
+    http_login
   end
 
   test "should get index" do

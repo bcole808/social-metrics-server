@@ -1,7 +1,6 @@
 class SocialStatsController < ApplicationController
+  http_basic_authenticate_with name: Rails.application.secrets.basic_auth_name, password: Rails.application.secrets.basic_auth_password 
   before_action :set_social_stat, only: [:show, :edit, :update, :destroy]
-
-  skip_before_action :verify_authenticity_token
 
   # POST /social_stats
   # POST /social_stats.json
