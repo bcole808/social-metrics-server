@@ -6,7 +6,6 @@ class SocialStatsController < ApplicationController
   # POST /social_stats
   # POST /social_stats.json
   def create
-    puts "SOCIAL STAT PARAMS: " + social_stat_params.inspect
     @social_stat = SocialStat.new(social_stat_params)
     respond_to do |format|
       if @social_stat.save
