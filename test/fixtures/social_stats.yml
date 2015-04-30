@@ -5,13 +5,13 @@ one:
   is_multisite: false
   wordpress_version: MyString
   plugin_version: MyString
-  plugin_settings: 
-  api_connection_status: 
+  plugin_settings: {}
+  api_connection_status: {} 
 
 two:
   site_id: MyString
   is_multisite: false
   wordpress_version: MyString
   plugin_version: MyString
-  plugin_settings: 
-  api_connection_status: 
+  plugin_settings: {}
+  api_connection_status: {} 
